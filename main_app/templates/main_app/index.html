@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    My Blog
+{% endblock %}
+
+{% block css_files%}
+
+    <link rel="stylesheet" href="{% static "main_app/post.css" %}">
+    <link rel="stylesheet" href="{% static "main_app/index.css" %}">
+
+{% endblock %}
+
+{% block content %}
+    <section id="welcome">
+        <header>
+            <img src="{% static "main_app/images/me.jpg" %}" alt="Yura - The Author Of This Blog">
+            <h2>YURA'S BLOG</h2>
+        </header>
+        <p>Hi, I'm Yura and I love doing something while doing nothing (usually called programming 😉)</p>
+    </section>
+
+    <section id="latest-posts">
+        <h2>My Latest Posts</h2>
+
+        <ul>
+            {% for post in posts %}
+                {% include "main_app/includes/post.html" %}
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="about">
+        <div>
+            <h2>What I Do</h2>
+            <p>
+                Sleep&emsp;Eat&emsp;Code&emsp;Workout&emsp;Repeat
+            </p>
+        </div>
+        <div>
+            <h2>Hobbies</h2>
+            <p>
+                ● Coding&emsp;● Listenig to Ukrainian music&emsp;● Learning English by speaking with natives&emsp;● Hiking&emsp;● Plaing videogames
+            </p>
+        </div>
+        <div>
+            <h2>My Goal</h2>
+            <p>
+                My goal is to keep growing as a web-developer and gain a warm place in Google 😄
+            </p>
+        </div>
+    </section>
+
+{% endblock %}
