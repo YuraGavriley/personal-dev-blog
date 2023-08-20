@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic import TemplateView
+from django.views.generic.detail import DetailView
 from django.views import View
 from .models import Post
 
@@ -29,5 +30,8 @@ class AllPostView(ListView):
     context_object_name = "all_posts"
 
 
-# class SinglePostView(TemplateView):
-#     template_name = "post-detail.html"
+class SinglePostView(DetailView):
+    model = Post
+    template_name = "main_app/post-detail.html"
+    context_object_name = "post"
+
