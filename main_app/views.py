@@ -7,7 +7,8 @@ from django.views.generic import ListView
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from django.views import View
-from .models import Post
+from .models import Post, Comment
+from .forms import CommentForm
 
 
 class StartingPageView(ListView):
@@ -35,3 +36,25 @@ class SinglePostView(DetailView):
     template_name = "main_app/post-detail.html"
     context_object_name = "post"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        comments = Comment.objects.filter(post=self.object)
+        context['comments'] = comments
+        context['comment_form'] = CommentForm()
+        return context
+
+    def post(self, request, slug):
+        comment_form = CommentForm(request.POST)
+        post = Post.objects.get(slug=slug)
+
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
+
+            return HttpResponseRedirect(reverse("single-post", args=[slug]))
+
+        return render(request, "main_app/post-detail", context={
+            "post": post,
+            "comments": post.comment.all().order_by("-date")
+            })
