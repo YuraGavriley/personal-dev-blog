@@ -9,6 +9,7 @@ from django.views.generic.detail import DetailView
 from django.views import View
 from .models import Post, Comment
 from .forms import CommentForm
+from django.contrib.auth import logout
 
 
 class StartingPageView(ListView):
@@ -58,3 +59,7 @@ class SinglePostView(DetailView):
             "post": post,
             "comments": post.comment.all().order_by("-date")
             })
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("starting-page"))

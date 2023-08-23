@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +17,15 @@
             <a href="">Stored Posts</a>
             <a href="{% url "all-posts"%}">All Posts</a>
         </nav>
+        <div>
+            {% if user.is_authenticated %}
+                <p>Hi, {{ user.username }}</p>
+                <a href="{% url "logout" %}">Logout</a>
+            {% else %}
+                <a href="{% provider_login_url "google" %}">Login with Google</a>
+            {% endif %}
+
+        </div>
     </header>
     {% block content %}{% endblock %}
 </body>
