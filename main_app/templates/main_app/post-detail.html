@@ -15,14 +15,16 @@
         <h2>{{ post.title }}</h2>
         <div>
             {% for tag in post.tags.all %}
-                <span class="tag">{{ tag.caption }}<span>
+                <span class="tag">{{ tag.caption }}</span>
             {% endfor %}
         </div>
         <article>
             <img src="{{ post.image.url }}" alt="{{ post.title }}">
-            <adress>By <a href="mailto:{{ post.author.email_address }}">{{ post.author }}</a><adress>
             <div>
-            Last updated on <time>{{ post.date|date:"d M Y" }}<time>
+                <address>By <a href="mailto:{{ post.author.email_address }}">{{ post.author }}</a></address>
+            </div>
+            <div>
+                <time>Last updated on {{ post.date|date:"d M Y" }}</time>
             </div>
         </article>
     </section>
@@ -39,7 +41,7 @@
                 <li>
                     <p>{{ comment.comment|linebreaks }}</p>
                     <div id="comment-date">
-                        <p>{{ comment.date|date:"M d, Y" }} at {{ comment.date|date:"H:i" }}</p>
+                        <time class="comment-time">{{ comment.date|date:"M d, Y" }} at {{ comment.date|date:"H:i" }}</time>
                     </div>
                 </li>
             {% endfor %}

@@ -19,10 +19,10 @@
         </nav>
         <div>
             {% if user.is_authenticated %}
-                <p>Hi, {{ user.username }}</p>
-                <a href="{% url "logout" %}">Logout</a>
+                <p class="user-name">Hi, {{ user.username }}</p>
+                <a class="login-logout" href="{% url "logout" %}">Logout</a>
             {% else %}
-                <a href="{% provider_login_url "google" %}">Login with Google</a>
+                <a class="login-logout" href="{% provider_login_url "google" %}">Login with Google</a>
             {% endif %}
 
         </div>
