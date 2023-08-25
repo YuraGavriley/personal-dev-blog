@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
 
+
 # Create your models here.
 
 class Tag(models.Model):
@@ -35,8 +36,13 @@ class Post(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField(max_length=500)
+    user_name = models.CharField(max_length=65)
+    user_email = models.EmailField()
     date = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
 
+    class Meta:
+        ordering = ["date"]
+
     def __str__(self):
-        return self.comment
+        return f"{self.comment} by {self.user_name}"

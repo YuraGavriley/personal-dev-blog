@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block title %}
     {{ post.title }}
@@ -39,7 +40,7 @@
         <ul>
             {% for comment in comments %}
                 <li>
-                    <p>{{ comment.comment|linebreaks }}</p>
+                    <p>{{ comment.user_name }}: {{ comment.comment|linebreaks }}</p>
                     <div id="comment-date">
                         <time class="comment-time">{{ comment.date|date:"M d, Y" }} at {{ comment.date|date:"H:i" }}</time>
                     </div>
@@ -49,17 +50,22 @@
     </section>
 
     <section id="comment-form">
-        <h2>Your Comment</h2>
-        <form action="{% url "single-post" post.slug %}" method="POST">
-            {% csrf_token %}
-            {% for form_field in comment_form %}
-                <div class="form-control {% if form_field.errors %}invalid{% endif %}">
-                    {{ form_field.label_tag }}
-                    {{ form_field }}
-                    {{ form_field.errors }}
-                </div>
-            {% endfor %}
-            <button>Save Comment</button>
-        </form>
+        {% if user.is_authenticated %}
+            <h2>Your Comment</h2>
+            <form action="{% url "single-post" post.slug %}" method="POST">
+                {% csrf_token %}
+                {% for form_field in comment_form %}
+                    <div class="form-control {% if form_field.errors %}invalid{% endif %}">
+                        {{ form_field.label_tag }}
+                        {{ form_field }}
+                        {{ form_field.errors }}
+                    </div>
+                {% endfor %}
+                <button>Save Comment</button>
+            </form>
+        {% else %}
+            <h3>Only registered users can write comments. Please,
+                <a href="{% provider_login_url "google" %}?next={% url "single-post" post.slug %}">Login</a></h3>
+        {% endif %}
     </section>
 {% endblock %}

@@ -47,9 +47,12 @@ class SinglePostView(DetailView):
     def post(self, request, slug):
         comment_form = CommentForm(request.POST)
         post = Post.objects.get(slug=slug)
+        current_user = request.user
 
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
+            comment.user_name = current_user.username
+            comment.user_email = current_user.email
             comment.post = post
             comment.save()
 
