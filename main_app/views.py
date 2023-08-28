@@ -13,7 +13,6 @@ from django.contrib.auth import logout
 
 
 class StartingPageView(ListView):
-
     model = Post
     template_name = "main_app/index.html"
     ordering = ["-date"]
@@ -40,7 +39,7 @@ class SinglePostView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         comments = Comment.objects.filter(post=self.object)
-        context['comments'] = comments
+        context['comments'] = comments.order_by("-date")
         context['comment_form'] = CommentForm()
         return context
 
@@ -58,10 +57,39 @@ class SinglePostView(DetailView):
 
             return HttpResponseRedirect(reverse("single-post", args=[slug]))
 
-        return render(request, "main_app/post-detail", context={
+        return render(request, "main_app/post-detail.html", context={
             "post": post,
-            "comments": post.comment.all().order_by("-date")
+            "comments": post.comments.all().order_by("-date")
             })
+
+
+class ReadLaterView(View):
+    def get(self, request):
+        stored_posts = request.session.get("stored_posts")
+        context = {}
+
+        if stored_posts is None:
+            context["posts"] = []
+        else:
+            context["posts"] = Post.objects.filter(slug__in=stored_posts)
+
+        return render(request, "main_app/read-later.html", context)
+
+    def post(self, request):
+        stored_posts = request.session.get("stored_posts")
+
+        if stored_posts is None:
+            stored_posts = []
+
+        post_slug = request.POST["post_slug"]
+
+        if post_slug not in stored_posts:
+            stored_posts.append(post_slug)
+
+        request.session["stored_posts"] = stored_posts
+
+        return HttpResponseRedirect(reverse("starting-page"))
+
 
 def logout_view(request):
     logout(request)
