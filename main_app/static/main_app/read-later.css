@@ -13,6 +13,10 @@
     max-width: 30rem;
 }
 
+#stored-posts p {
+    text-align: center;
+}
+
 #stored-posts ul {
     list-style: none;
     padding: 0;

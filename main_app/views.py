@@ -31,18 +31,33 @@ class AllPostView(ListView):
     context_object_name = "all_posts"
 
 
-class SinglePostView(DetailView):
-    model = Post
-    template_name = "main_app/post-detail.html"
-    context_object_name = "post"
+class SinglePostView(View):
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        comments = Comment.objects.filter(post=self.object)
-        context['comments'] = comments.order_by("-date")
-        context['comment_form'] = CommentForm()
-        return context
+    # Check if post is saved for read later
+    def is_saved_post(self, request, post_slug):
+        stored_posts = request.session.get("stored_posts")
 
+        if len(stored_posts) != 0:
+            is_saved = post_slug in stored_posts
+        else:
+            is_saved = False
+
+        return is_saved
+
+    # Show content of posts during GET request
+    def get(self, request, slug):
+        post = Post.objects.get(slug=slug)
+        comments = Comment.objects.filter(post=post)
+
+        context = {}
+        context["post"] = post
+        context["comments"] = comments.order_by("-date")
+        context["comment_form"] = CommentForm()
+        context["is_saved_post"] = self.is_saved_post(request, post.slug)
+
+        return render(request, "main_app/post-detail.html", context)
+
+    # Implement comment handling by POST request
     def post(self, request, slug):
         comment_form = CommentForm(request.POST)
         post = Post.objects.get(slug=slug)
@@ -68,10 +83,12 @@ class ReadLaterView(View):
         stored_posts = request.session.get("stored_posts")
         context = {}
 
-        if stored_posts is None:
+        if stored_posts is None or len(stored_posts) == 0:
             context["posts"] = []
+            context["has_posts"] = False
         else:
             context["posts"] = Post.objects.filter(slug__in=stored_posts)
+            context["has_posts"] = True
 
         return render(request, "main_app/read-later.html", context)
 
@@ -83,8 +100,11 @@ class ReadLaterView(View):
 
         post_slug = request.POST["post_slug"]
 
+        # Adding post if it is not in the list and deleting otherwise
         if post_slug not in stored_posts:
             stored_posts.append(post_slug)
+        else:
+            stored_posts.remove(post_slug)
 
         request.session["stored_posts"] = stored_posts
 

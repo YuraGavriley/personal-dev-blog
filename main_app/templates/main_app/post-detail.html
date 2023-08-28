@@ -23,9 +23,11 @@
             <form action="{% url "read-later" %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" value="{{ post.slug }}" name="post_slug"></input>
-                <button>
-                    Read Later
-                </button>
+                {% if is_saved_post %}
+                    <button>Remove From Saved</button>
+                {% else %}
+                    <button>Read Later</button>
+                {% endif %}
             </form>
         </div>
         <article>
