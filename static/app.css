@@ -48,15 +48,9 @@ h3 {
   color: white;
 }
 
-.user-name {
-  font-size: 14px;
-  color: whitesmoke;
-  margin: 0;
-  margin-bottom: 4px;
-}
 
 #main-navigation .login-logout {
-  padding: 4px;
+  margin: 0;
 }
 
 #main-navigation .login-logout:hover,
@@ -65,4 +59,10 @@ h3 {
   border-radius: 4px;
   background-color: #5706c0;
   color: white;
+}
+
+.user-name {
+  font-size: 14px;
+  color: whitesmoke;
+  margin: 0;
 }
