@@ -37,7 +37,7 @@ class SinglePostView(View):
     def is_saved_post(self, request, post_slug):
         stored_posts = request.session.get("stored_posts")
 
-        if len(stored_posts) != 0:
+        if stored_posts is not None:
             is_saved = post_slug in stored_posts
         else:
             is_saved = False
