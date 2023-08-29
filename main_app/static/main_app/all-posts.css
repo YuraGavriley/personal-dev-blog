@@ -20,7 +20,7 @@ body {
   margin: 3rem 0;
 }
 
-ul {
+#posts-ul {
   list-style: none;
   margin: 0;
   padding: 0;
