@@ -12,7 +12,12 @@
 </head>
 <body>
     <header id="main-navigation">
-        <h1><a href="{% url "starting-page" %}">Yura's Blog</a></h1>
+        <div>
+            <h1><a href="{% url "starting-page" %}">Yura's Blog</a></h1>
+        </div>
+        <div class="about-div">
+            <h2><a href="{% url "about" %}">About</a></h2>
+        </div>
         <nav>
             <a href="{% url "read-later" %}">Saved Posts</a>
             <a href="{% url "all-posts"%}">All Posts</a>
@@ -33,9 +38,9 @@
     <footer>
         <h2>Contact information</h2>
         <ul>
-            <li><a href="mailto:yura.gavriley@gmail.com"><img src="{% static "icons/gmail.svg" %}"></img></a></li>
-            <li><a href="https://github.com/YuraGavriley"><img src="{% static "icons/github.svg" %}"></img></a></li>
-            <li><a href="https://linkedin.com/in/yurii-stopchytskyi-a3ab47255"><img src="{% static "icons/linkedin.svg" %}"></img></a></li>
+            <li><a href="mailto:yura.gavriley@gmail.com"><img src="{% static "icons/gmail.svg" %}"></a></li>
+            <li><a href="https://github.com/YuraGavriley"><img src="{% static "icons/github.svg" %}"></a></li>
+            <li><a href="https://linkedin.com/in/yurii-stopchytskyi-a3ab47255"><img src="{% static "icons/linkedin.svg" %}"></a></li>
         </ul>
     </footer>
 

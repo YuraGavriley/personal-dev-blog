@@ -111,6 +111,10 @@ class ReadLaterView(View):
         return HttpResponseRedirect(reverse("starting-page"))
 
 
+class AboutView(TemplateView):
+    template_name = "main_app/about.html"
+
+
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("starting-page"))
