@@ -28,7 +28,6 @@ body {
 
 }
 
-
 #about-me img {
 	width: 24rem;
 	height: 24rem;
@@ -38,6 +37,15 @@ body {
 	border-radius: 12px;
 	background-color: #ffe1bf;
 	transform: rotateZ(3deg);
+}
+
+#my-cv {
+	padding: 50px;
+}
+
+#my-cv img {
+	height: 5rem;
+	width: 5rem;
 }
 
 footer {

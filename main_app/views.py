@@ -1,7 +1,7 @@
 from .models import Post
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic import TemplateView
@@ -118,3 +118,9 @@ class AboutView(TemplateView):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("starting-page"))
+
+def pdf_view(request):
+    with open('main_app/static/main_app/files/CV - Yurii Stopchytskyi.pdf', 'rb') as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        response['Content-Disposition'] = 'inline;filename=mypdf.pdf'
+        return response

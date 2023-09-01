@@ -20,4 +20,8 @@
             <img src="{% static "main_app/images/me.jpg"%}">
         </div>
     </div>
+    <div id="my-cv">
+        <h3>Check out my CV</h3>
+        <a href="{% url "pdf-view" %}"><img src="{% static "main_app/icons/pdf.svg" %}"></a>
+    </div>
 {% endblock %}
