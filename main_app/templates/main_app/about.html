@@ -11,17 +11,40 @@
 {% block content %}
     <div id="about-me">
         <div class="text-container">
-            <p><h1>Hi, I'm Yura</h1><br>Currently I am a student and getting my bachelor's degree as a Computer Engineer.<br>
-            Passionate about web development I want to make people's lives a little bit better and easier.<br>
-            Willing to launch my engineering career in a place full of high-quality experts, to be able to constantly improve
-            my professional competencies and be a perfect addition to the team.</p>
+            <p>
+                <h1>Hi, I'm Yura</h1><br>&emsp;Since my childhood years, I have always been curious about how that magic thing called the Internet works.
+                And how it could be used to help people solve their problems. Now my curiosity is even greater than back in those days.
+                With the ability to make websites, I want to make people's lives better and more accessible.
+            </p>
+            <p>
+                &emsp;Currently I am a student and getting my bachelor's degree as a Computer Engineer.
+                Passionate about web development I want to make people's lives a little bit better and easier.
+                Willing to launch my engineering career in a place full of high-quality experts, to be able to constantly improve
+                my professional competencies and be a perfect addition to the team.
+            </p>
         </div>
         <div class="image-container">
-            <img src="{% static "main_app/images/me.jpg"%}">
+            <img src="{% static "main_app/images/about_me.jpg"%}">
         </div>
     </div>
     <div id="my-cv">
-        <h3>Check out my CV</h3>
-        <a href="{% url "pdf-view" %}"><img src="{% static "main_app/icons/pdf.svg" %}"></a>
+        <div>
+            <h3>Check out my CV</h3>
+            <a href="{% url "pdf-view" %}"><img src="{% static "main_app/icons/pdf.svg" %}"></a>
+        </div>
+        <div>
+            <h3>My Skills</h3>
+            <ul>
+                <li>Python</li>
+                <li>Django</li>
+                <li>English B2</li>
+                <li>Git</li>
+                <li>HTML/CSS</li>
+                <li>SQL</li>
+                <li>PostgreSQL</li>
+                <li>MongoDB</li>
+            </ul>
+        </div>
     </div>
+
 {% endblock %}

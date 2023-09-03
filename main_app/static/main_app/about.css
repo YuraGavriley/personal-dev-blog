@@ -14,6 +14,7 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	padding: 50px;
+	margin: 0 6rem;
 	margin-top: 5rem;
 	min-height: 100vh;
 }
@@ -41,6 +42,8 @@ body {
 
 #my-cv {
 	padding: 50px;
+	margin: 0 6rem;
+	text-align: center;
 }
 
 #my-cv img {
@@ -48,7 +51,22 @@ body {
 	width: 5rem;
 }
 
+#my-cv ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#my-cv li {
+	margin: 8px 0;
+}
+
+#my-cv div {
+	margin-top: 1rem;
+  border-top: 2px solid #ccc;
+}
 footer {
   margin-top: auto;
 	width: 100%;
 }
+
