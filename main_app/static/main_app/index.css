@@ -1,9 +1,9 @@
 body {
-  background-color: #f8f9fa;
+  background-color: #FFFDFA;
 }
 
 #welcome {
-  background: linear-gradient(to right top, #6305dd, #390281);
+  background: linear-gradient(to right top, #EAA735, #E48900);
   padding: 6rem 12%;
 }
 
@@ -43,7 +43,7 @@ body {
   border-radius: 12px;
   width: 60rem;
   margin: -6rem auto 2rem auto;
-  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
 }
 
 #latest-posts h2 {
@@ -67,7 +67,7 @@ body {
   justify-content: space-between;
   text-align: center;
   padding: 3rem;
-  background-color: #e48900;
+  background-color: #E48900;
   margin-top: 5rem;
 }
 
