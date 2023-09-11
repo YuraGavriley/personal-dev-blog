@@ -1,9 +1,9 @@
 body {
-  background-color: #f8f9fa;
+  background-color: #FFFDFA;
 }
 
 #main-navigation {
-  background-color: #390281;
+  background-color: #E48900;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
@@ -13,7 +13,7 @@ body {
   width: 90%;
   max-width: 90rem;
   border-radius: 16px;
-  background-color: #5706c0;
+  background-color: #E89E2C;
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   height: 22rem;
@@ -77,20 +77,20 @@ body {
 #read-later button:hover,
 #read-later button:active {
   background-color: white;
-  color: #390281;
+  color: #333;
 }
 
 main {
   width: 90%;
   max-width: 90rem;
   margin: 3rem auto;
-  background-color: #f8f9fa;
+  background-color: #FFFDFA;
   padding: 0 3rem;
 }
 
 .tag {
   background-color: white;
-  color: #390281;
+  color: black;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-size: 14px;
@@ -121,9 +121,9 @@ main {
 
 #comment-form button {
   font: inherit;
-  background-color: #390281;
+  background-color: #E48900;
   color: white;
-  border: 1px solid #390281;
+  border: 1px solid #E48900;
   padding: 0.5rem 1.5rem;
   border-radius: 6px;
   cursor: pointer;
@@ -131,8 +131,8 @@ main {
 
 #comment-form button:hover,
 #comment-form button:active {
-  background-color: #4f0ba7;
-  border-color: #4f0ba7;
+  background-color: #E89E2C;
+  border-color: #E89E2C;
 }
 
 .form-control {
