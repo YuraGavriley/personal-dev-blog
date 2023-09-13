@@ -46,3 +46,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.comment} by {self.user_name}"
+
+class UserData(models.Model):
+    username = models.CharField(max_length=65)
+    stored_posts = models.JSONField()
+
+    class Meta:
+        verbose_name_plural = "User Data"
+
+    def __str__(self):
+        return f"{self.username}"
