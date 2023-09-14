@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "personalblog"
+version = "0.1.0"
+description = "Personal Development Blog project. Developed using Python and Django framework. Functionality: Managing Posts by CRUD operations, Registration via Google, Writing comments by registered users, Saving Posts for \"Read Later\" section via sessions, Viewing up-to-date information about the Developer."
+authors = ["Yura <yura.gavriley@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

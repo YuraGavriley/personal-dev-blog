@@ -1,13 +1,11 @@
-from .models import Post, UserData
+from .models import Post, Comment, UserData
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView
 from django.views.generic import TemplateView
-from django.views.generic.detail import DetailView
 from django.views import View
-from .models import Post, Comment
 from .forms import CommentForm
 from django.contrib.auth import logout
 
@@ -32,7 +30,6 @@ class AllPostView(ListView):
 
 
 class SinglePostView(View):
-
     # Check if post is saved for read later
     def is_saved_post(self, request, post_slug):
         if request.user.is_authenticated:
@@ -77,10 +74,11 @@ class SinglePostView(View):
 
             return HttpResponseRedirect(reverse("single-post", args=[slug]))
 
-        return render(request, "main_app/post-detail.html", context={
-            "post": post,
-            "comments": post.comments.all().order_by("-date")
-            })
+        return render(
+            request,
+            "main_app/post-detail.html",
+            context={"post": post, "comments": post.comments.all().order_by("-date")},
+        )
 
 
 class ReadLaterView(View):
@@ -99,7 +97,7 @@ class ReadLaterView(View):
             username = request.user.username
             try:
                 record = UserData.objects.get(username=username)
-            except:
+            except UserData.DoesNotExist:
                 if stored_posts is None:
                     stored_posts = []
                 record = UserData(username=username, stored_posts=stored_posts)
@@ -119,7 +117,6 @@ class ReadLaterView(View):
                 context["has_posts"] = True
 
         return render(request, "main_app/read-later.html", context)
-
 
         # stored_posts = request.session.get("stored_posts")
         # context = {}
@@ -175,7 +172,6 @@ class ReadLaterView(View):
         # return HttpResponseRedirect(reverse("starting-page"))
 
 
-
 class AboutView(TemplateView):
     template_name = "main_app/about.html"
 
@@ -184,8 +180,11 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("starting-page"))
 
+
 def pdf_view(request):
-    with open('main_app/static/main_app/files/CV - Yurii Stopchytskyi.pdf', 'rb') as pdf:
-        response = HttpResponse(pdf.read(), content_type='application/pdf')
-        response['Content-Disposition'] = 'inline;filename=mypdf.pdf'
+    with open(
+        "main_app/static/main_app/files/CV - Yurii Stopchytskyi.pdf", "rb"
+    ) as pdf:
+        response = HttpResponse(pdf.read(), content_type="application/pdf")
+        response["Content-Disposition"] = "inline;filename=mypdf.pdf"
         return response

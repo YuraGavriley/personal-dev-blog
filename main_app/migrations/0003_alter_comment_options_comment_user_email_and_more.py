@@ -4,26 +4,25 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('main_app', '0002_comment'),
+        ("main_app", "0002_comment"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='comment',
-            options={'ordering': ['date']},
+            name="comment",
+            options={"ordering": ["date"]},
         ),
         migrations.AddField(
-            model_name='comment',
-            name='user_email',
-            field=models.EmailField(default='example@gmail.com', max_length=254),
+            model_name="comment",
+            name="user_email",
+            field=models.EmailField(default="example@gmail.com", max_length=254),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='comment',
-            name='user_name',
-            field=models.CharField(default='example', max_length=65),
+            model_name="comment",
+            name="user_name",
+            field=models.CharField(default="example", max_length=65),
             preserve_default=False,
         ),
     ]

@@ -8,6 +8,5 @@ urlpatterns = [
     path("posts/<slug:slug>", views.SinglePostView.as_view(), name="single-post"),
     path("read-later", views.ReadLaterView.as_view(), name="read-later"),
     path("about", views.AboutView.as_view(), name="about"),
-    path('view-pdf', views.pdf_view, name='pdf-view'),
-
+    path("view-pdf", views.pdf_view, name="pdf-view"),
 ]

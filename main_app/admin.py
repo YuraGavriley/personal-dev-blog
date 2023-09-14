@@ -7,13 +7,35 @@ from .models import Post, Author, Tag, Comment, UserData
 
 class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_filter = ("author", "tags", "date",)
-    list_display = ("title", "date", "author",)
+    list_filter = (
+        "author",
+        "tags",
+        "date",
+    )
+    list_display = (
+        "title",
+        "date",
+        "author",
+    )
+
 
 class CommentAdmin(admin.ModelAdmin):
-    list_filter = ("user_name", "date", "user_email",)
-    list_display = ("comment", "post", "user_name", "date",)
-    search_fields = ("user_name", "user_email", "comment",)
+    list_filter = (
+        "user_name",
+        "date",
+        "user_email",
+    )
+    list_display = (
+        "comment",
+        "post",
+        "user_name",
+        "date",
+    )
+    search_fields = (
+        "user_name",
+        "user_email",
+        "comment",
+    )
 
 
 admin.site.register(Post, PostAdmin)

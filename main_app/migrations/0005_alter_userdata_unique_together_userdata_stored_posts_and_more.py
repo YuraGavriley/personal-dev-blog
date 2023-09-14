@@ -4,28 +4,27 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('main_app', '0004_userdata'),
+        ("main_app", "0004_userdata"),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='userdata',
+            name="userdata",
             unique_together=set(),
         ),
         migrations.AddField(
-            model_name='userdata',
-            name='stored_posts',
+            model_name="userdata",
+            name="stored_posts",
             field=models.JSONField(default=[]),
             preserve_default=False,
         ),
         migrations.RemoveField(
-            model_name='userdata',
-            name='key',
+            model_name="userdata",
+            name="key",
         ),
         migrations.RemoveField(
-            model_name='userdata',
-            name='value',
+            model_name="userdata",
+            name="value",
         ),
     ]
