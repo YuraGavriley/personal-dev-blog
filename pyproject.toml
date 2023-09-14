@@ -8,6 +8,27 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+asgiref = "3.7.2"
+black = "23.9.1"
+certifi = "2023.7.22"
+cffi = "1.15.1"
+cfgv = "3.4.0"
+charset-normalizer = "3.2.0"
+click = "8.1.7"
+colorama = "0.4.6"
+cryptography = "41.0.3"
+defusedxml = "0.7.1"
+distlib = "0.3.7"
+django = "4.2.3"
+django-allauth = "0.54.0"
+filelock = "3.12.4"
+identify = "2.5.28"
+idna = "3.4"
+mypy-extensions = "1.0.0"
+nodeenv = "1.8.0"
+oauthlib = "3.2.2"
+packaging = "23.1"
+pathspec = "0.11.2"
 
 
 [build-system]
