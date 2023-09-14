@@ -25,38 +25,38 @@ This project is currently in development. The main functionality is working prop
 
 Clone down this repository. You will need Python, pip, poetry, git installed on your machine.
 
-1. Clone this repo
+###### 1. Clone this repo
 
-git clone https://github.com/YuraGavriley/personal-dev-blog
+```git clone https://github.com/YuraGavriley/personal-dev-blog```
 
-2. Set up a virtual environment
+###### 2. Set up a virtual environment
 
-python -m venv <name_of_environment>
+```python -m venv <name_of_environment>```
 
-4. Activate virtual environment in 'PersonalBlog' folder
+###### 4. Activate virtual environment in 'PersonalBlog' folder
 
-<name_of_environment>/Scripts/activate
+```<name_of_environment>/Scripts/activate```
 
-5. Install all dependencies with poetry
+###### 5. Install all dependencies with poetry
 
-poetry install
+```poetry install```
 
-6. Go to 'main_app' folder and execute all migrations
+###### 6. Go to 'main_app' folder and execute all migrations
 
-  cd ./main_app
+```cd ./main_app```
 
-  python manage.py makemigrations
+```python manage.py makemigrations```
 
-  python manage.py migrate
+```python manage.py migrate```
 
-7. Create superuser for admin dashboard and follow tips in console
+###### 7. Create superuser for admin dashboard and follow tips in console
 
-python manage.py createsuperuser
+```python manage.py createsuperuser```
 
-8. Then collect all static files
+###### 8. Then collect all static files
 
-python manage.py collectstatic
+```python manage.py collectstatic```
 
-9. Run the server
+###### 9. Run the server
 
-python manage.py runserver
+```python manage.py runserver```
