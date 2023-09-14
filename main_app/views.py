@@ -82,6 +82,7 @@ class SinglePostView(View):
 
 
 class ReadLaterView(View):
+    # Function to add or delete slug from stored post list
     def add_or_delete_slug(self, post_slug, stored_posts):
         if post_slug not in stored_posts:
             stored_posts.append(post_slug)
@@ -89,10 +90,24 @@ class ReadLaterView(View):
             stored_posts.remove(post_slug)
         return stored_posts
 
+    # Handling get request of the read later page
     def get(self, request):
-        stored_posts = request.session.get("stored_posts")
-        context = {}
+        # Function to create context data for template
+        def make_context(stored_posts):
+            context = {}
+            if stored_posts is None or len(stored_posts) == 0:
+                context["posts"] = []
+                context[
+                    "has_posts"
+                ] = False  # key, value pair for showing saved post status in html
+            else:
+                context["posts"] = Post.objects.filter(slug__in=stored_posts)
+                context["has_posts"] = True
+            return context
 
+        stored_posts = request.session.get("stored_posts")
+
+        # If user is authenticated, receive saved post data from database
         if request.user.is_authenticated:
             username = request.user.username
             try:
@@ -102,43 +117,23 @@ class ReadLaterView(View):
                     stored_posts = []
                 record = UserData(username=username, stored_posts=stored_posts)
                 record.save()
-            context["posts"] = Post.objects.filter(slug__in=record.stored_posts)
-            if len(record.stored_posts) == 0:
-                context["has_posts"] = False
-            else:
-                context["has_posts"] = True
 
+            context = make_context(stored_posts=record.stored_posts)
+
+        # Else receive data from sessions
         else:
-            if stored_posts is None or len(stored_posts) == 0:
-                context["posts"] = []
-                context["has_posts"] = False
-            else:
-                context["posts"] = Post.objects.filter(slug__in=stored_posts)
-                context["has_posts"] = True
+            context = make_context(stored_posts=stored_posts)
 
         return render(request, "main_app/read-later.html", context)
 
-        # stored_posts = request.session.get("stored_posts")
-        # context = {}
-
-        # if stored_posts is None or len(stored_posts) == 0:
-        #     context["posts"] = []
-        #     context["has_posts"] = False
-        # else:
-        #     context["posts"] = Post.objects.filter(slug__in=stored_posts)
-        #     context["has_posts"] = True
-
-        # return render(request, "main_app/read-later.html", context)
-
+    # Function for adding and deleting saved posts
     def post(self, request):
         stored_posts = request.session.get("stored_posts")
         post_slug = request.POST["post_slug"]
-
         if stored_posts is None:
             stored_posts = []
 
-        stored_posts = self.add_or_delete_slug(post_slug, stored_posts)
-
+        # If user is authenticated, save/delete post to/from the database
         if request.user.is_authenticated:
             username = request.user.username
             try:
@@ -151,25 +146,12 @@ class ReadLaterView(View):
             except UserData.DoesNotExist:
                 record = UserData(username=username, stored_posts=stored_posts)
                 record.save()
+        # Else, use session data to add or delete saved post
         else:
+            stored_posts = self.add_or_delete_slug(post_slug, stored_posts)
             request.session["stored_posts"] = stored_posts
+
         return HttpResponseRedirect(reverse("starting-page"))
-        # stored_posts = request.session.get("stored_posts")
-
-        # if stored_posts is None:
-        #     stored_posts = []
-
-        # post_slug = request.POST["post_slug"]
-
-        # # Adding post if it is not in the list and deleting otherwise
-        # if post_slug not in stored_posts:
-        #     stored_posts.append(post_slug)
-        # else:
-        #     stored_posts.remove(post_slug)
-
-        # request.session["stored_posts"] = stored_posts
-
-        # return HttpResponseRedirect(reverse("starting-page"))
 
 
 class AboutView(TemplateView):
