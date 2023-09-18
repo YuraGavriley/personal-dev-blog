@@ -29,36 +29,32 @@ Clone down this repository. You will need Python, pip, poetry, git installed on 
 
 ```git clone https://github.com/YuraGavriley/personal-dev-blog```
 
-###### 2. Navigate to the project folder 'Django-development-blog/PersonalBlog'
-
-```cd Django-development-blog/PersonalBlog```
-
 ###### 3. Set up a virtual environment
 
 ```python -m venv <name_of_environment>```
 
-###### 4. Activate virtual environment in 'PersonalBlog' folder
+###### 4. Activate virtual environment in project folder
 
-```<name_of_environment>/Scripts/activate```
+```<name_of_environment>\Scripts\activate```
 
-###### 5. Install all dependencies with poetry
+###### 5. Install poetry (if you haven't done it yet)
+
+```pip install poetry```
+
+###### 6. Install all dependencies with poetry
 
 ```poetry install```
 
-###### 6. Go to 'main_app' folder and execute all migrations
+###### 7. Go to 'main_app' folder and execute all migrations
 
 ```python manage.py makemigrations```
 
 ```python manage.py migrate```
 
-###### 7. Create superuser for admin dashboard and follow tips in console
+###### 8. Create superuser for admin dashboard and follow tips in console
 
 ```python manage.py createsuperuser```
 
-###### 8. Then collect all static files
-
-```python manage.py collectstatic```
-
-###### 9. Run the server
+###### 10. Run the server
 
 ```python manage.py runserver```
