@@ -29,7 +29,11 @@ Clone down this repository. You will need Python, pip, poetry, git installed on 
 
 ```git clone https://github.com/YuraGavriley/personal-dev-blog```
 
-###### 2. Set up a virtual environment
+###### 2. Navigate to the project folder 'Django-development-blog/PersonalBlog'
+
+```cd Django-development-blog/PersonalBlog```
+
+###### 3. Set up a virtual environment
 
 ```python -m venv <name_of_environment>```
 
@@ -42,8 +46,6 @@ Clone down this repository. You will need Python, pip, poetry, git installed on 
 ```poetry install```
 
 ###### 6. Go to 'main_app' folder and execute all migrations
-
-```cd ./main_app```
 
 ```python manage.py makemigrations```
 
