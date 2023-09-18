@@ -37,7 +37,9 @@ Clone down this repository. You will need Python, pip, poetry, git installed on 
 
 ```<name_of_environment>\Scripts\activate```
 
-###### 5. Install poetry (if you haven't done it yet)
+###### 5. Navigate to the project folder and install poetry (if you haven't done it yet)
+
+```cd personal-dev-blog```
 
 ```pip install poetry```
 
