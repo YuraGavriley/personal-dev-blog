@@ -86,6 +86,7 @@ main {
   margin: 3rem auto;
   background-color: #FFFDFA;
   padding: 0 3rem;
+  font-size: 1.3rem;
 }
 
 .tag {
@@ -232,24 +233,30 @@ main {
 }
 
 .image-gallery {
+  margin: 32px 64px;        /* 32px top/bottom, 64px left/right */
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;          /* space between images */
-  margin: 2rem 0;     /* space above/below the gallery */
+  flex-wrap: wrap;          /* wrap after max‑width is reached */
+  justify-content: center;  /* center each row of images */
+  gap: 32px;                /* space BETWEEN images */
 }
 .image-gallery img {
-  flex: 1 1 calc((100% - 2rem) / 3);
-  /* up to 3 images per row; extras will wrap to new lines equally */
-  max-width: 100%;
-  height: auto;
+  width: 32rem;
+  height: 32rem;
+  object-fit: cover;
+  border-radius: 12px;           /* same rounding as #summary images */
+  /* border: 4px solid #464646;     new darker 4px border */
 }
-/* 2‐image override: each takes ~½ the space */
-.image-gallery img:nth-last-child(2),
-.image-gallery img:last-child:nth-child(2) {
-  flex-basis: calc((100% - 1rem) / 2);
+
+#wide-img {
+  width: 46rem;
 }
-/* 1‐image override: center & blow it up */
-.image-gallery img:only-child {
-  flex-basis: 60%;
+
+#small-img {
+  width: 16rem;
+  height: 16rem;
+}
+
+center {
+  font-size: 1.4rem;
+  font-weight: bolder;
 }
