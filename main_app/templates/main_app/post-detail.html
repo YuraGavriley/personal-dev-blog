@@ -42,9 +42,7 @@
     </section>
 
     <main>
-        <p>
-        {{ post.content|linebreaks }}
-        </p>
+        {{ post.content|safe }}
     </main>
 
     <section id="comments">

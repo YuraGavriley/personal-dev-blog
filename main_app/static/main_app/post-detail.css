@@ -230,3 +230,26 @@ main {
   margin-bottom: 5px;
   text-align: right;
 }
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;          /* space between images */
+  margin: 2rem 0;     /* space above/below the gallery */
+}
+.image-gallery img {
+  flex: 1 1 calc((100% - 2rem) / 3);
+  /* up to 3 images per row; extras will wrap to new lines equally */
+  max-width: 100%;
+  height: auto;
+}
+/* 2‐image override: each takes ~½ the space */
+.image-gallery img:nth-last-child(2),
+.image-gallery img:last-child:nth-child(2) {
+  flex-basis: calc((100% - 1rem) / 2);
+}
+/* 1‐image override: center & blow it up */
+.image-gallery img:only-child {
+  flex-basis: 60%;
+}
